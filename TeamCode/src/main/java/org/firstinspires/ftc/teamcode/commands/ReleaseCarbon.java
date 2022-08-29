@@ -21,7 +21,7 @@ public class ReleaseCarbon extends CommandBase {
 
     @Override
     public void execute() {
-        intakeSubsystem.set(Constants.Intake.SPEED);
+        intakeSubsystem.set(-Constants.Intake.SPEED);
     }
 
     @Override
