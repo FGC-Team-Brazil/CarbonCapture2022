@@ -4,14 +4,14 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.Subsystem;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.BufferSubsystem;
 
-public class ReleaseCarbon extends CommandBase {
+public class ForwardFeed extends CommandBase {
 
-    private final IntakeSubsystem intakeSubsystem;
+    private final BufferSubsystem bufferSubsystem;
 
-    public ReleaseCarbon(IntakeSubsystem intakeSubsystem) {
-        this.intakeSubsystem = intakeSubsystem;
+    public ForwardFeed(BufferSubsystem bufferSubsystem) {
+        this.bufferSubsystem = bufferSubsystem;
         super.addRequirements((Subsystem) shooterSubsystem);
     }
 
@@ -21,7 +21,7 @@ public class ReleaseCarbon extends CommandBase {
 
     @Override
     public void execute() {
-        intakeSubsystem.set(-Constants.Intake.SPEED);
+        bufferSubsystem.set(Constants.Buffer.SPEED);
     }
 
     @Override
