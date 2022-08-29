@@ -6,12 +6,12 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class IntakeSubsystem {
     private DcMotor motor;
 
-    public IntakeSubsystem(HardwareMap hardwareMap, String shooterName){
-        setup(hardwareMap, shooterName);
+    public IntakeSubsystem(HardwareMap hardwareMap, String name){
+        setup(hardwareMap, name);
     }
 
-    public void setup( HardwareMap hardwareMap, String shooterName ) {
-        motor = hardwareMap.dcMotor.get(shooterName);
+    public void setup( HardwareMap hardwareMap, String name ) {
+        motor = hardwareMap.dcMotor.get(name);
     }
 
     public void set(double speed){
