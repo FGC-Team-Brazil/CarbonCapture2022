@@ -13,39 +13,41 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
+public class OpOne extends LinearOpMode {
+    private DcMotor leftMotor;
+    private DcMotor rightMotor;
 
-public class op1 extends LinearOpMode {
-    private Gyroscope imu;
-    //private ColorSensor test_color;
-    private DcMotor test_motor;
-    private Servo test_servo;
-    private DigitalChannel test_touch;
-
+    private double leftMotorPower = 0;
+    private double rightMotorPower = 0;
 
     @Override
     public void runOpMode() {
-       // imu = hardwareMap.get(Gyroscope.class, "imu");
-        //test_color = hardwareMap.get(ColorSensor.class, "test_color");
-        test_motor = hardwareMap.get(DcMotor.class, "test_motor");
-        //test_servo = hardwareMap.get(Servo.class, "test_servo");
-        //test_touch = hardwareMap.get(DigitalChannel.class, "test_touch");
+        this.leftMotor = hardwareMap.get(DcMotor.class, "leftMotor");
+        this.rightMotor = hardwareMap.get(DcMotor.class, "rightMotor");
+
+        //one side must be reversed for a drivetrain
+        this.rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        // Wait for the game to start (driver presses PLAY)
+
         waitForStart();
-        double motorPower = 0;
-        // run until the end of the match (driver presses STOP)
+
         while (opModeIsActive()) {
-            telemetry.addData("Status", "Running");
-            telemetry.update();
-            motorPower = - this.gamepad1.left_stick_y;
-            test_motor.setPower(motorPower);
 
-            telemetry.addData("Encoder Value", test_motor.getCurrentPosition());
             telemetry.addData("Status", "Running");
             telemetry.update();
 
+            this.leftMotorPower = this.gamepad1.left_stick_y;
+            this.rightMotorPower = this.gamepad2.right_stick_y;
+
+            this.leftMotor.setPower(this.leftMotorPower);
+            this.rightMotor.setPower(this.rightMotorPower);
+
+            telemetry.addData("Left Encoder Value", this.leftMotor.getCurrentPosition());
+            telemetry.addData("Right Encoder Value", this.leftMotor.getCurrentPosition());
+            telemetry.addData("Status", "Running");
+            telemetry.update();
 
         }
     }
