@@ -38,11 +38,15 @@ public class OpOne extends LinearOpMode {
             telemetry.addData("Status", "Running");
             telemetry.update();
 
-            this.leftMotorPower = this.gamepad1.left_stick_y;
-            this.rightMotorPower = this.gamepad2.right_stick_y;
+            double y = -gamepad1.left_stick_y;
+            double x = gamepad1.right_stick_x;
 
-            this.leftMotor.setPower(this.leftMotorPower);
-            this.rightMotor.setPower(this.rightMotorPower);
+            leftMotor.setPower(y + x);
+            rightMotor.setPower(y - x);
+
+            //this.leftMotorPower = this.gamepad1.left_stick_y;
+            //this.rightMotorPower = this.gamepad1.right_stick_y;
+
 
             telemetry.addData("Left Encoder Value", this.leftMotor.getCurrentPosition());
             telemetry.addData("Right Encoder Value", this.leftMotor.getCurrentPosition());
