@@ -38,8 +38,8 @@ public class OpOne extends LinearOpMode {
 
 
         //invert both climb
-        this.climbUpMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.climbDownMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        this.climbUpMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        this.climbDownMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -57,13 +57,13 @@ public class OpOne extends LinearOpMode {
             leftMotor.setPower(y + x);
             rightMotor.setPower(y - x);
 
-            double yClimb= gamepad2.left_stick_y;
+            double yClimbUp= gamepad2.left_stick_y;
+            double yClimbDown= gamepad2.right_stick_y;
 
-            if(yClimb > 0){
-                climbUpMotor.setPower(yClimb); //CORE
-            }else if(yClimb < 0){
-                climbDownMotor.setPower(-yClimb); //HEX
-            }
+
+            climbDownMotor.setPower(yClimbDown);
+            climbUpMotor.setPower(yClimbUp);
+
 
             //this.leftMotorPower = this.gamepad1.left_stick_y;
             //this.rightMotorPower = this.gamepad1.right_stick_y;
